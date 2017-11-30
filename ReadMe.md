@@ -34,3 +34,39 @@ QRCard is a virtual business card intended for social media profile sharing. Ini
 [sample-state]: sample-state.md
 [api-endpoints]: api-endpoints.md
 [schema]: schema.md
+
+## Implementation Timeline
+
+### Phase 1: Backend setup (1 Day, W1 M)
+
+**Objective:** Functioning Express.js backend server
+
+### Phase 2: Integrate APIs (2 Days, W1 W)
+
+**Objective:** Integrate Cloudinary and GoQR API to backend server.
+
+### Phase 3: Frontend integration (1 Day, W1 Th)
+
+**Objective:** Integrate React.js frontend to backend server and build test components.
+
+### Phase 4: Testing (1 Day, W1 F)
+
+**Objective:** Functional testing with mobile interfaces and begin expanding to other services.
+
+### Phase 6: Clean-Up (1 Day, W2 M)
+
+**Objective:** Clean-up repository and continue building bonus features.
+
+## APIs
+- [Cloudinary][Cloudinary]
+- [QR Code][QR API]
+
+### Bonus Objectives (TBD)
+- [ ] Integrate LinkedIn profile search API
+- [ ] React.Native mobile application
+  - [ ] Create QR Code Scanner & Reader for iOS Platform
+  - [ ] Create QR Code Scanner & Reader for Android Platform
+- [ ] User personal page and profile sharing
+  - [ ] Backend database model/class for Users
+  - [ ] User Web Profile page for sharing saved QR Codes
+  - [ ] Mobile Application User view for sharing saved QR Codes
