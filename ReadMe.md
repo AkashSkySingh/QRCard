@@ -39,21 +39,25 @@ QRCard is a virtual business card intended for social media profile sharing. Ini
 
 ### Phase 1: Backend setup (1 Day, W1 M)
 
-**Objective:** Functioning Express.js backend server
+**Objective:** Functioning Express.js backend server and integrating MongoDB.
 
 ### Phase 2: Integrate APIs (2 Days, W1 W)
 
-**Objective:** Integrate Cloudinary and GoQR API to backend server.
+**Objective:** Integrate Cloudinary and GoQR API to backend server and verify URL checks.
 
 ### Phase 3: Frontend integration (1 Day, W1 Th)
 
-**Objective:** Integrate React.js frontend to backend server and build test components.
+**Objective:** Integrate React.js frontend to backend server and build components.
 
-### Phase 4: Testing (1 Day, W1 F)
+### Phase 4: Web Application Styling (1 Day, W1 F)
 
-**Objective:** Functional testing with mobile interfaces and begin expanding to other services.
+**Objective:** Style web application page and frontend.
 
-### Phase 6: Clean-Up (1 Day, W2 M)
+### Phase 5: Testing (2 Day, W2 T)
+
+**Objective:** Functional testing with mobile interfaces and begin expanding to other services. Create test cases for test environment.
+
+### Phase 5: Clean-Up (1 Day, W2 W)
 
 **Objective:** Clean-up repository and continue building bonus features.
 
