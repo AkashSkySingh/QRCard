@@ -1,0 +1,27 @@
+{
+  "name": "qrcard",
+  "version": "1.0.0",
+  "description": "- [QRCard: Live][Heroku] - [QRCard: Github][Github]",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AkashSkySingh/QRCard.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AkashSkySingh/QRCard/issues"
+  },
+  "homepage": "https://github.com/AkashSkySingh/QRCard#readme"
+}
