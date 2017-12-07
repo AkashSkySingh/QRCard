@@ -57,7 +57,7 @@ QRCard is a virtual business card intended for social media profile sharing. Ini
 
 **Objective:** Functional testing with mobile interfaces and begin expanding to other services. Create test cases for test environment.
 
-### Phase 5: Clean-Up (1 Day, W2 W)
+### Phase 6: Clean-Up (1 Day, W2 W)
 
 **Objective:** Clean-up repository and continue building bonus features.
 
