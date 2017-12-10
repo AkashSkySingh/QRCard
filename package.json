@@ -5,9 +5,11 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cloudinary": "^1.9.1",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
-    "mongodb": "^2.2.33"
+    "mongodb": "^2.2.33",
+    "request": "^2.83.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
