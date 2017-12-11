@@ -20,14 +20,8 @@ require('dotenv').load();
 const dbuser = process.env.dbuser;
 const dbpassword = process.env.dbpassword;
 const cnname=process.env.cnname;
-const cnuser = process.env.cnuser;
-const cnpassword = process.env.cnpassword;
-
-console.log('Cloud_Name:', cnname);
-console.log('Cloud_Key:', cnuser);
-console.log('Cloud_Secret:', cnpassword);
-console.log('MongoDB_User:', dbuser);
-console.log('MongoDB_Password:', dbpassword);
+const cnkey = process.env.cnkey;
+const cnsecret = process.env.cnsecret;
 
 // Establishing connection with MongoDB connection
 MongoClient.connect(`mongodb://${dbuser}:${dbpassword}@ds129776.mlab.com:29776/qrlinks`, (err, database) => {
@@ -41,8 +35,8 @@ MongoClient.connect(`mongodb://${dbuser}:${dbpassword}@ds129776.mlab.com:29776/q
 // Configure cloudinary api
 cloudinary.config({
   cloud_name: cnname,
-  api_key: cnuser,
-  api_secret: cnpassword
+  api_key: cnkey,
+  api_secret: cnsecret
 })
 
 // Request serving index.html file to frontend
@@ -68,22 +62,27 @@ app.post('/links', (req, res) => {
 
   console.log('GoQR_API_Link:', goqr_req);
 
-  cloudinary.uploader.upload(goqr_req, (cloud_result) => {
-    console.log('cloudinary_result:', cloud_result);
+  cloudinary.v2.uploader.upload(goqr_req, (error, result) => {
+    console.log('cloudinary_result:', result);
+    console.log('cloud error', error);
 
     let total_object = req.body;
-    total_object['cloudinary_data'] = cloud_result;
+    total_object['cloudinary_data'] = result;
 
-    console.log('MongoDB_Upload:', total_object);
+    if (!error) {
+      console.log('MongoDB_Upload:', total_object);
 
-    db.collection('links').save(total_object, (err, result) => {
-      if (err) {
-        return console.log(err)
-      } else {
-        console.log('Saved to MongoDB without error!')
-      }
-    })
-
+      db.collection('links').save(total_object, (err, result) => {
+        if (err) {
+          return console.log(err)
+        } else {
+          console.log('Saved to MongoDB without error!')
+        }
+      })
+    } else {
+      console.log(error);
+    }
+    console.log("upload finished")
   })
 
   res.redirect('/') //remove line post testing
