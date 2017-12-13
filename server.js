@@ -24,7 +24,7 @@ const cnkey = process.env.cnkey;
 const cnsecret = process.env.cnsecret;
 
 // Establishing connection with MongoDB connection
-MongoClient.connect(`mongodb://${dbuser}:${dbpassword}@ds129776.mlab.com:29776/qrlinks`, (err, database) => {
+MongoClient.connect(`mongodb://${dbuser}:${dbpassword}@ds139446.mlab.com:39446/qrcard-dev`, (err, database) => {
   if (err) return console.log(err)
   db = database
   app.listen(3000, () => {
