@@ -56,16 +56,16 @@ Request which does the following, in order:
 - Combines cloud_result with index form body to upload to MongoDB (total_object)
 */
 app.post('/links', (req, res) => {
-  console.log('User_Link:', req.body['userfed_url']); //User provided link
+  // console.log('User_Link:', req.body['userfed_url']); //User provided link
 
-  let goqr_req = `https://api.qrserver.com/v1/create-qr-code/?data=${req.body['userfed_url'].toLowerCase()}&size=100x100`;
+  let goqr_req = `https://api.qrserver.com/v1/create-qr-code/?data=${req.body['userfed_url']}&size=100x100`;
 
-  console.log('GoQR_API_Link:', goqr_req); //GoQR Request
+  // console.log('GoQR_API_Link:', goqr_req); //GoQR Request
 
   cloudinary.v2.uploader.upload(goqr_req, (error, result) => {
-    console.log('Cloudinary_Result:', result); //Cloudinary
+    // console.log('Cloudinary_Result:', result); //Cloudinary
 
-    req.body['userfed_url'] = req.body['userfed_url'].toLowerCase();
+    req.body['userfed_url'] = req.body['userfed_url'];
 
     let total_object = req.body;
     total_object['cloudinary_data'] = result;
@@ -86,18 +86,20 @@ app.post('/links', (req, res) => {
     }
   })
 
+  res.redirect('/') //remove line post testing
+})
+
 /*
 Request to get all database elements and in qr code image duplicate prevention
 
 Requires view template for frontend (rather than ejs integration, just build via react.js)
 */
 
-app.get('/', (req2, res2) => {
-  const cursor = db.collection('links').find().toArray((err, results) =>
-    console.log(results)
-  );
+app.get('/', (req, res) => {
+  const cursor = db.collection('links').find().toArray((err, results) => {
+    console.log(err);
+    console.log(results);
+    console.log(req);
+    console.log(res);
+  });
 });
-
-
-  res.redirect('/') //remove line post testing
-})
