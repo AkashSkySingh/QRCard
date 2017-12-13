@@ -3,7 +3,7 @@
 - [QRCard: Live][Heroku]
 - [QRCard: Github][Github]
 
-[Heroku]: https://www.nightstock.net/#/
+[Heroku]:
 [Github]: https://github.com/AkashSkySingh/QRCard
 [QR API]: http://goqr.me/api/
 [Cloudinary]: https://cloudinary.com/documentation/solution_overview
@@ -13,10 +13,10 @@ QRCard is a virtual business card intended for social media profile sharing. Ini
 
 - [ ] [Production README](../README.md)
 - [ ] [Hosting on Heroku][heroku]
-- [ ] Node.js & Express.js
-  - [ ] [QR Code API Integration][QR API]
-  - [ ] [Cloudinary API Integration][Cloudinary]
-  - [ ] Verification of CDN usage
+- [X] Node.js & Express.js
+  - [X] [QR Code API Integration][QR API]
+  - [X] [Cloudinary API Integration][Cloudinary]
+  - [X] Verification of CDN usage
 - [ ] Making a React.js frontend
 - [ ] Testing verified
 - [ ] Documentation
