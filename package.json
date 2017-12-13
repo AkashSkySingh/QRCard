@@ -8,8 +8,7 @@
     "cloudinary": "^1.9.1",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
-    "mongodb": "^2.2.33",
-    "request": "^2.83.0"
+    "mongodb": "^2.2.33"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
