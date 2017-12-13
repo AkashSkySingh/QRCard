@@ -5,6 +5,7 @@ https://www.npmjs.com/package/request
 http://goqr.me/api/doc/create-qr-code/
 https://github.com/justincastilla/hiding-secrets-in-node
 https://cloudinary.com/documentation/node_integration#overview
+https://github.com/bryantheastronaut/mernCommentBox
 */
 
 const express = require('express');
@@ -55,16 +56,16 @@ Request which does the following, in order:
 - Combines cloud_result with index form body to upload to MongoDB (total_object)
 */
 app.post('/links', (req, res) => {
-  console.log('Posting link!');
-  console.log('User_Link:', req.body['userfed_url']);
+  console.log('User_Link:', req.body['userfed_url']); //User provided link
 
-  let goqr_req = `https://api.qrserver.com/v1/create-qr-code/?data=${req.body['userfed_url']}&size=100x100`;
+  let goqr_req = `https://api.qrserver.com/v1/create-qr-code/?data=${req.body['userfed_url'].toLowerCase()}&size=100x100`;
 
-  console.log('GoQR_API_Link:', goqr_req);
+  console.log('GoQR_API_Link:', goqr_req); //GoQR Request
 
   cloudinary.v2.uploader.upload(goqr_req, (error, result) => {
-    console.log('cloudinary_result:', result);
-    console.log('cloud error', error);
+    console.log('Cloudinary_Result:', result); //Cloudinary
+
+    req.body['userfed_url'] = req.body['userfed_url'].toLowerCase();
 
     let total_object = req.body;
     total_object['cloudinary_data'] = result;
@@ -74,16 +75,29 @@ app.post('/links', (req, res) => {
 
       db.collection('links').save(total_object, (err, result) => {
         if (err) {
-          return console.log(err)
+          return console.log('MongoDB_Error:', err)
         } else {
           console.log('Saved to MongoDB without error!')
         }
       })
+
     } else {
-      console.log(error);
+      console.log('Cloudinary_Error:', error);
     }
-    console.log("upload finished")
   })
+
+/*
+Request to get all database elements and in qr code image duplicate prevention
+
+Requires view template for frontend (rather than ejs integration, just build via react.js)
+*/
+
+app.get('/', (req2, res2) => {
+  const cursor = db.collection('links').find().toArray((err, results) =>
+    console.log(results)
+  );
+});
+
 
   res.redirect('/') //remove line post testing
 })
