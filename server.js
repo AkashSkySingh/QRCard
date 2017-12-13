@@ -65,8 +65,6 @@ app.post('/links', (req, res) => {
   cloudinary.v2.uploader.upload(goqr_req, (error, result) => {
     // console.log('Cloudinary_Result:', result); //Cloudinary
 
-    req.body['userfed_url'] = req.body['userfed_url'];
-
     let total_object = req.body;
     total_object['cloudinary_data'] = result;
 
