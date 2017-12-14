@@ -68,11 +68,11 @@ app.post('/links', (req, res) => {
   db.collection('links').find({ userfed_url: `${req.body['userfed_url']}` }).toArray((err, result) => {
     let found = result;
 
-    console.log('result: ', result);
     if (err) console.log('error: ', err);
 
     if (found.length !== 0 && !err) {
       console.log("Found it! Returning object.");
+      console.log('result: ', result);
       // console.log(req.body["userfed_url"]);
       // console.log(result[0].userfed_url);
     } else {
