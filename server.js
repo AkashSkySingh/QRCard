@@ -65,14 +65,19 @@ app.post('/links', (req, res) => {
 
   // console.log('GoQR_API_Link:', goqr_req); //GoQR Request
   // let found = [];
+
+  let link_object;
+
   db.collection('links').find({ userfed_url: `${req.body['userfed_url']}` }).toArray((err, result) => {
     let found = result;
 
     if (err) console.log('error: ', err);
 
     if (found.length !== 0 && !err) {
+      link_object = found;
       console.log("Found it! Returning object.");
-      console.log('result: ', result);
+      console.log('link object: ', link_object);
+      res.json(link_object);
       // console.log(req.body["userfed_url"]);
       // console.log(result[0].userfed_url);
     } else {
@@ -95,7 +100,10 @@ app.post('/links', (req, res) => {
               return console.log('MongoDB_Error:', err)
             } else {
               console.log('Saved to MongoDB without error!')
-              console.log(res.ops);   // db object to return
+              // console.log(res.ops);   // db object to return
+              link_object = res.ops;
+              console.log('link object returned as json: ', link_object);
+              res.json(link_object);
             }
           })
 
@@ -106,8 +114,8 @@ app.post('/links', (req, res) => {
     }
   })
 
+  // res.json(link_object); // move up
   res.redirect('/') //remove line post testing
-  // res.send(total_object)
 })
 
 /*
