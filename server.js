@@ -12,7 +12,6 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
-const request = require('request');
 const cloudinary = require('cloudinary');
 
 // Saving login keys/pws to env file for use
@@ -42,6 +41,7 @@ cloudinary.config({
 
 // Request serving index.html file to frontend
 app.get('/', (req, res) => {
+
   res.sendFile(__dirname + '/index.html')
 })
 
@@ -58,33 +58,56 @@ Request which does the following, in order:
 app.post('/links', (req, res) => {
   // console.log('User_Link:', req.body['userfed_url']); //User provided link
 
-  let goqr_req = `https://api.qrserver.com/v1/create-qr-code/?data=${req.body['userfed_url']}&size=100x100`;
+  // if link aleady exists in db; find from db and return
+  // else if it does not exist, create api call for qr code and save to db
+  // parse cloudinary data;
+
 
   // console.log('GoQR_API_Link:', goqr_req); //GoQR Request
+  // let found = [];
+  db.collection('links').find({ userfed_url: `${req.body['userfed_url']}` }).toArray((err, result) => {
+    let found = result;
 
-  cloudinary.v2.uploader.upload(goqr_req, (error, result) => {
-    // console.log('Cloudinary_Result:', result); //Cloudinary
+    console.log('result: ', result);
+    if (err) console.log('error: ', err);
 
-    let total_object = req.body;
-    total_object['cloudinary_data'] = result;
+    if (found.length !== 0 && !err) {
+      console.log("Found it! Returning object.");
+      // console.log(req.body["userfed_url"]);
+      // console.log(result[0].userfed_url);
+    } else {
+      console.log("Does not exist in DB. Creating object and saving to DB.");
 
-    if (!error) {
-      console.log('MongoDB_Upload:', total_object);
+      let goqr_req = `https://api.qrserver.com/v1/create-qr-code/?data=${req.body['userfed_url']}&size=100x100`;
+      cloudinary.v2.uploader.upload(goqr_req, (error, result) => {
+        // console.log('Cloudinary_Result:', result); //Cloudinary
+        // console.log('Cloudinary Secure Url:', result.secure_url); //Cloudinary
+        // console.log('Body: ', req.body)
 
-      db.collection('links').save(total_object, (err, result) => {
-        if (err) {
-          return console.log('MongoDB_Error:', err)
+        let total_object = req.body;
+        total_object['cloudinary_url'] = result.secure_url;
+
+        if (!error) {
+          // console.log('MongoDB_Upload:', total_object);
+
+          db.collection('links').save(total_object, (err, res) => {
+            if (err) {
+              return console.log('MongoDB_Error:', err)
+            } else {
+              console.log('Saved to MongoDB without error!')
+              console.log(res.ops);   // db object to return
+            }
+          })
+
         } else {
-          console.log('Saved to MongoDB without error!')
+          console.log('Cloudinary_Error:', error);
         }
       })
-
-    } else {
-      console.log('Cloudinary_Error:', error);
     }
   })
 
   res.redirect('/') //remove line post testing
+  // res.send(total_object)
 })
 
 /*
@@ -92,12 +115,10 @@ Request to get all database elements and in qr code image duplicate prevention
 
 Requires view template for frontend (rather than ejs integration, just build via react.js)
 */
-
-app.get('/', (req, res) => {
-  const cursor = db.collection('links').find().toArray((err, results) => {
-    console.log(err);
+app.get('/links', (req, res) => {
+  db.collection('links').find().toArray((err, results) => {
     console.log(results);
-    console.log(req);
-    console.log(res);
   });
+
+  res.redirect('/')
 });
