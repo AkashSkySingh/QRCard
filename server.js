@@ -8,6 +8,7 @@ https://cloudinary.com/documentation/node_integration#overview
 https://github.com/bryantheastronaut/mernCommentBox
 */
 
+// Modules used
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
@@ -39,32 +40,11 @@ cloudinary.config({
   api_secret: cnsecret
 })
 
-// Request serving index.html file to frontend
-app.get('/', (req, res) => {
-
-  res.sendFile(__dirname + '/index.html')
-})
-
 // BodyParser is middleware to parse form data
 app.use(bodyParser.urlencoded({extended: true}))
 
-/*
-Request which does the following, in order:
-- Retrieves user provided link (userfed_url) on index page
-- Passes userfed_url into GoQR API link for QR generation link (goqr_req)
-- Passes goqr_req to Cloudinary Upload NPM package and pass back an object with image information on QR Code image (cloud_result)
-- Combines cloud_result with index form body to upload to MongoDB (total_object)
-*/
+// Function for posting image to CDN or pulling from CDN if existing
 app.post('/links', (req, res) => {
-  // console.log('User_Link:', req.body['userfed_url']); //User provided link
-
-  // if link aleady exists in db; find from db and return
-  // else if it does not exist, create api call for qr code and save to db
-  // parse cloudinary data;
-
-
-  // console.log('GoQR_API_Link:', goqr_req); //GoQR Request
-  // let found = [];
 
   let link_object;
 
@@ -78,16 +58,12 @@ app.post('/links', (req, res) => {
       console.log("Found it! Returning object.");
       console.log('link object: ', link_object);
       res.json(link_object);
-      // console.log(req.body["userfed_url"]);
-      // console.log(result[0].userfed_url);
+      // res.sendFile(__dirname + '/index.html')
     } else {
       console.log("Does not exist in DB. Creating object and saving to DB.");
 
       let goqr_req = `https://api.qrserver.com/v1/create-qr-code/?data=${req.body['userfed_url']}&size=100x100`;
       cloudinary.v2.uploader.upload(goqr_req, (error, result) => {
-        // console.log('Cloudinary_Result:', result); //Cloudinary
-        // console.log('Cloudinary Secure Url:', result.secure_url); //Cloudinary
-        // console.log('Body: ', req.body)
 
         let total_object = req.body;
         total_object['cloudinary_url'] = result.secure_url;
@@ -100,10 +76,11 @@ app.post('/links', (req, res) => {
               return console.log('MongoDB_Error:', err)
             } else {
               console.log('Saved to MongoDB without error!')
-              // console.log(res.ops);   // db object to return
+
               link_object = result.ops;
               console.log('link object returned as json: ', link_object);
               res.json(link_object);
+              // res.sendFile(__dirname + '/index.html')
             }
           })
 
@@ -114,19 +91,15 @@ app.post('/links', (req, res) => {
     }
   })
 
-  // res.json(link_object); // move up
-  // res.redirect('/') //remove line post testing
+  res.redirect('/') //remove line post testing
 })
 
-/*
-Request to get all database elements and in qr code image duplicate prevention
+// Logic to post to EJS view
+app.set('view engine', 'ejs')
 
-Requires view template for frontend (rather than ejs integration, just build via react.js)
-*/
-app.get('/links', (req, res) => {
-  db.collection('links').find().toArray((err, results) => {
-    console.log(results);
+app.get('/', (req, res) => {
+  db.collection('links').find().toArray((err, result) => {
+    if (err) return console.log(err);
+    res.render('index.ejs', {links: result})
   });
-
-  res.redirect('/')
 });
