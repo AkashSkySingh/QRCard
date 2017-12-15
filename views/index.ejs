@@ -2,19 +2,49 @@
 <html lang='en'>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/master.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:600|Roboto:300" rel="stylesheet">
     <title>QRCard</title>
   </head>
-  <body>
+  <body class="main">
+
+    <h1 class="title">
+      QRCard
+    </h1>
 
     <ul class="links">
-      <img src=<%= link.cloudinary_url %> alt="">
-      <li ><%= link.userfed_url %></li>
+      <li class="qr-image-li">
+        <img class="qr-image" src=<%= link.cloudinary_url %> alt="">
+      </li>
+      <li class="qr-link-li">
+        <h3>Link: </h3>
+        <a class="qr-link" href=<%= link.userfed_url %>><%= link.userfed_url %></a>
+      </li>
     </ul>
 
-    <form action="/links" method="POST">
-      <input type="text" placeholder="url" name="userfed_url">
+
+    <form class="form" action="/links" method="POST">
+      <input type="text" class="url-field" placeholder="url" name="userfed_url">
       <button type="submit">Submit</button>
     </form>
+
+    <div class="instructions">
+      <div class="how-to">
+        <h3>How-To</h3>
+        <ul>
+          <li><h5>Just paste your link and submit</h5></li>
+        </ul>
+      </div>
+
+      <div class="tips">
+        <h3>Tips:</h3>
+        <ul>
+          <li><h4>Android:</h4><h5>Need a QR Scanner App</h5></li>
+          <li><h4>iOS:</h4><h5>Use the Camera App</h5></li>
+        </ul>
+      </div>
+    </div>
 
   </body>
 </html>
