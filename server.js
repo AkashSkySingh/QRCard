@@ -95,13 +95,13 @@ app.post('/links', (req, res) => {
         if (!error) {
           // console.log('MongoDB_Upload:', total_object);
 
-          db.collection('links').save(total_object, (err, res) => {
+          db.collection('links').save(total_object, (err, result) => {
             if (err) {
               return console.log('MongoDB_Error:', err)
             } else {
               console.log('Saved to MongoDB without error!')
               // console.log(res.ops);   // db object to return
-              link_object = res.ops;
+              link_object = result.ops;
               console.log('link object returned as json: ', link_object);
               res.json(link_object);
             }
@@ -115,7 +115,7 @@ app.post('/links', (req, res) => {
   })
 
   // res.json(link_object); // move up
-  res.redirect('/') //remove line post testing
+  // res.redirect('/') //remove line post testing
 })
 
 /*
