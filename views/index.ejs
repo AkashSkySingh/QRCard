@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset="utf-8">
+    <title>QRCard</title>
+  </head>
+  <body>
+
+    <ul class="links">
+      <!-- <a href=<%= links[links.length - 1].userfed_url %>><%= links[links.length - 1].userfed_url %></a> -->
+      <img src=<%= links[links.length - 1].cloudinary_url %> alt="">
+    </ul>
+
+    <form action="/links" method="POST">
+      <input type="text" placeholder="url" name="userfed_url">
+      <button type="submit">Submit</button>
+    </form>
+
+  </body>
+</html>
