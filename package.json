@@ -1,12 +1,13 @@
 {
   "name": "qrcard",
   "version": "1.0.0",
-  "description": "- [QRCard: Live][Heroku] - [QRCard: Github][Github]",
+  "description": "QRCard is a virtual business card intended for social media profile sharing.",
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.18.2",
     "cloudinary": "^1.9.1",
     "dotenv": "^4.0.0",
+    "ejs": "^2.5.7",
     "express": "^4.16.2",
     "mongodb": "^2.2.33"
   },
