@@ -7,8 +7,8 @@
   <body>
 
     <ul class="links">
-      <!-- <a href=<%= links[links.length - 1].userfed_url %>><%= links[links.length - 1].userfed_url %></a> -->
-      <img src=<%= links[links.length - 1].cloudinary_url %> alt="">
+      <img src=<%= link.cloudinary_url %> alt="">
+      <li ><%= link.userfed_url %></li>
     </ul>
 
     <form action="/links" method="POST">
