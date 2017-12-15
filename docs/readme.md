@@ -19,13 +19,13 @@ QRCard is a virtual business card intended for social media profile sharing. Ini
   - [X] [QR Code API Integration][QR API]
   - [X] [Cloudinary API Integration][Cloudinary]
   - [X] Verification of CDN usage
-  - [ ] Link duplication prevention
-- [ ] Making a React.js frontend
-  - [ ] Create routes
-  - [ ] Create views
-  - [ ] Style
-- [ ] Testing verified
-- [ ] Documentation
+  - [X] Link duplication prevention
+- [X] Making a frontend
+  - [X] Create routes
+  - [X] Create views
+  - [X] Style
+- [X] Testing verified
+- [X] Documentation
 
 
 ## Design Docs
