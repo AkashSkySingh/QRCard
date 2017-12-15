@@ -19,8 +19,8 @@ const path = require('path');
 // Required for css styling
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Saving login keys/pws to env file for use
-require('dotenv').load();
+// Saving login keys/pws to env file for use locally
+// require('dotenv').load();
 
 const dbuser = process.env.dbuser;
 const dbpassword = process.env.dbpassword;
