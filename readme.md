@@ -2,7 +2,7 @@
 
 [QRCard live][heroku]
 
-[Heroku]: https://qrcard.com
+[Heroku]: https://qrcodecard.herokuapp.com/
 [Github]: https://github.com/AkashSkySingh/QRCard
 [QR API]: http://goqr.me/api/
 [Cloudinary]: https://cloudinary.com/documentation/solution_overview

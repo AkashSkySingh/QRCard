@@ -2,15 +2,39 @@
 <html lang='en'>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/master.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:600|Roboto:300" rel="stylesheet">
     <title>QRCard</title>
   </head>
-  <body>
-    Working Server!
+  <body class="main">
 
-    <form action="/links" method="POST">
-      <input type="text" placeholder="url" name="userfed_url">
+    <h1 class="title">
+      QRCard
+    </h1>
+
+
+    <form class="form" action="/links" method="POST">
+      <input type="text" class="url-field" placeholder="url" name="userfed_url">
       <button type="submit">Submit</button>
     </form>
+
+    <div class="instructions">
+      <div class="how-to">
+        <h3>How-To</h3>
+        <ul>
+          <li><h5>Just paste your link and submit</h5></li>
+        </ul>
+      </div>
+
+      <div class="tips">
+        <h3>Tips:</h3>
+        <ul>
+          <li><h4>Android:</h4><h5>Need a QR Scanner App</h5></li>
+          <li><h4>iOS:</h4><h5>Use the Camera App</h5></li>
+        </ul>
+      </div>
+    </div>
 
   </body>
 </html>

@@ -3,7 +3,7 @@
 - [QRCard: Live][Heroku]
 - [QRCard: Github][Github]
 
-[Heroku]: https://qrcard.com
+[Heroku]: https://qrcodecard.herokuapp.com/
 [Github]: https://github.com/AkashSkySingh/QRCard
 [QR API]: http://goqr.me/api/
 [Cloudinary]: https://cloudinary.com/documentation/solution_overview
@@ -11,9 +11,10 @@
 ## Minimum Viable Product
 QRCard is a virtual business card intended for social media profile sharing. Initial development will focus on the integration of a user's LinkedIn profile. The general idea is to provide user's a simple process of sharing social media sites on the fly during events and other functions. Initial testing of the QR code will be done on iOS and the application will only be available on the web.
 
-- [ ] [Production README](../README.md)
-- [ ] [Hosting on Heroku][heroku]
- - [ ] Domain Acquisition
+- [x] [Production README](../README.md)
+- [x] [Hosting on Heroku][heroku]
+- [ ] Domain Acquisition
+ - [ ] Custom App URL configuration
  - [ ] DNS setup
 - [x] Node.js & Express.js
   - [x] [QR Code API Integration][QR API]

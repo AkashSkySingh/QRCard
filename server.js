@@ -19,8 +19,8 @@ const path = require('path');
 // Required for css styling
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Saving login keys/pws to env file for use
-require('dotenv').load();
+// Saving login keys/pws to env file for LOCAL USE
+// require('dotenv').load();
 
 const dbuser = process.env.dbuser;
 const dbpassword = process.env.dbpassword;
@@ -113,4 +113,9 @@ app.get('/', (req, res) => {
     if (err) return console.log(err);
     res.render('index.ejs', {link: result[0]})
   });
+});
+
+// Required for heroku dynamic port forwarding
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
