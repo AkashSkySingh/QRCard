@@ -20,7 +20,7 @@ const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Saving login keys/pws to env file for LOCAL USE
-// require('dotenv').load();
+require('dotenv').load();
 
 const dbuser = process.env.dbuser;
 const dbpassword = process.env.dbpassword;
@@ -108,14 +108,13 @@ app.post('/links', (req, res) => {
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-  db.collection('links').find().toArray((err, result) => {
-    console.log(result[0]);
-    if (err) return console.log(err);
-    res.render('index.ejs', {link: result[0]})
-  });
+  sample = { userfed_url: 'https://github.com/AkashSkySingh/QRCard',
+             cloudinary_url: 'https://res.cloudinary.com/qrcard/image/upload/v1513360727/kyw5eiw15z4ehphyvylx.png'
+           }
+  res.render('index.ejs', {link: sample})
 });
 
 // Required for heroku dynamic port forwarding
-app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
+// app.listen(process.env.PORT || 3000, function(){
+//   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+// });
