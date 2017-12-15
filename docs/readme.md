@@ -14,18 +14,18 @@ QRCard is a virtual business card intended for social media profile sharing. Ini
 - [ ] [Production README](../README.md)
 - [ ] [Hosting on Heroku][heroku]
  - [ ] Domain Acquisition
- - [ ] Rerouting to DNS
-- [X] Node.js & Express.js
-  - [X] [QR Code API Integration][QR API]
-  - [X] [Cloudinary API Integration][Cloudinary]
-  - [X] Verification of CDN usage
-  - [X] Link duplication prevention
-- [X] Making a frontend
-  - [X] Create routes
-  - [X] Create views
-  - [X] Style
-- [X] Testing verified
-- [X] Documentation
+ - [ ] DNS setup
+- [x] Node.js & Express.js
+  - [x] [QR Code API Integration][QR API]
+  - [x] [Cloudinary API Integration][Cloudinary]
+  - [x] Verification of CDN usage
+  - [x] Link duplication prevention
+- [x] Making a frontend
+  - [x] Create routes
+  - [x] Create views
+  - [x] Style
+- [x] Testing verified
+- [x] Documentation
 
 
 ## Design Docs
