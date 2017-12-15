@@ -54,10 +54,13 @@ app.post('/links', (req, res) => {
     if (err) console.log('error: ', err);
 
     if (found.length !== 0 && !err) {
-      link_object = found;
+      link_object = found[0];
       console.log("Found it! Returning object.");
       console.log('link object: ', link_object);
-      res.json(link_object);
+      // res.json(link_object);
+      if (link_object) {
+        res.render('index.ejs', {link: link_object});
+      }
       // res.sendFile(__dirname + '/index.html')
     } else {
       console.log("Does not exist in DB. Creating object and saving to DB.");
@@ -77,9 +80,12 @@ app.post('/links', (req, res) => {
             } else {
               console.log('Saved to MongoDB without error!')
 
-              link_object = result.ops;
+              link_object = result.ops[0];
               console.log('link object returned as json: ', link_object);
-              res.json(link_object);
+              // res.json(link_object);
+              if (link_object) {
+                res.render('index.ejs', {link: link_object});
+              }
               // res.sendFile(__dirname + '/index.html')
             }
           })
@@ -91,7 +97,7 @@ app.post('/links', (req, res) => {
     }
   })
 
-  res.redirect('/') //remove line post testing
+  // res.redirect('/') //remove line post testing
 })
 
 // Logic to post to EJS view
@@ -99,7 +105,8 @@ app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
   db.collection('links').find().toArray((err, result) => {
+    console.log(result[0]);
     if (err) return console.log(err);
-    res.render('index.ejs', {links: result})
+    res.render('index.ejs', {link: result[0]})
   });
 });
