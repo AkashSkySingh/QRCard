@@ -14,6 +14,10 @@ const bodyParser = require('body-parser')
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const cloudinary = require('cloudinary');
+const path = require('path');
+
+// Required for css styling
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Saving login keys/pws to env file for use
 require('dotenv').load();
