@@ -20,7 +20,7 @@ const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Saving login keys/pws to env file for LOCAL USE
-// require('dotenv').load();
+require('dotenv').load();
 
 const dbuser = process.env.dbuser;
 const dbpassword = process.env.dbpassword;
@@ -116,6 +116,6 @@ app.get('/', (req, res) => {
 });
 
 // Required for heroku dynamic port forwarding
-app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
+// app.listen(process.env.PORT || 3000, function(){
+//   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+// });
