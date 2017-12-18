@@ -52,6 +52,10 @@ app.post('/links', (req, res) => {
 
   let link_object;
 
+  if (!req.body['userfed_url']) {
+    req.body['userfed_url'] = 'https://github.com/AkashSkySingh/QRCard'
+  }
+
   db.collection('links').find({ userfed_url: `${req.body['userfed_url']}` }).toArray((err, result) => {
     let found = result;
 
@@ -73,6 +77,7 @@ app.post('/links', (req, res) => {
       cloudinary.v2.uploader.upload(goqr_req, (error, result) => {
 
         let total_object = req.body;
+
         total_object['cloudinary_url'] = result.secure_url;
 
         if (!error) {
