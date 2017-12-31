@@ -262,11 +262,64 @@ Tablet
 
 }
 
-
 /*---------------
 Web CSS
 ----------------*/
 
-@media (min-device-width: 1024px){
+@media (min-device-width: 901px){
+
+  html {
+    height: 100%;
+  }
+
+  .title {
+    font-size: 90px;
+    margin-bottom: 15px;
+  }
+
+  img {
+    width: 200px;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    font-size: 45px;
+  }
+
+  h4, h5 {
+    font-size: 30px;
+  }
+
+  .qr-link {
+    font-size: 26px;
+  }
+
+  h4 {
+    margin-right: 15px;
+  }
+
+  form {
+    margin-bottom: 26px;
+  }
+
+  input {
+    height: 28px;
+    font-size: 24px;
+  }
+
+  button {
+    width: 110px;
+    height: 34px;
+    font-size: 28px;
+    border-radius: 5px;
+  }
+
+  .qr-ul {
+    margin: 10px auto;
+  }
+
+  .instructions div {
+    margin: 10px;
+  }
 
 }
