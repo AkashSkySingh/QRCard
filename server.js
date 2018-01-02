@@ -77,7 +77,6 @@ app.post('/links', (req, res) => {
       cloudinary.v2.uploader.upload(goqr_req, (error, result) => {
 
         let total_object = req.body;
-
         total_object['cloudinary_url'] = result.secure_url;
 
         if (!error) {
@@ -113,11 +112,11 @@ app.post('/links', (req, res) => {
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-  db.collection('links').find().toArray((err, result) => {
-    console.log(result[0]);
-    if (err) return console.log(err);
-    res.render('index.ejs', {link: result[0]})
-  });
+  sample = { userfed_url: 'https://github.com/AkashSkySingh/QRCard',
+             cloudinary_url: 'https://res.cloudinary.com/qrcard/image/upload/v1513360727/kyw5eiw15z4ehphyvylx.png'
+           }
+  res.render('index.ejs', {link: sample})
+
 });
 
 // Required for heroku dynamic port forwarding
