@@ -146,12 +146,12 @@ Mobile Screen Flip
 @media (min-device-width: 551px) and (max-device-width: 750px){
 
   html {
-    height: 95%;
+    height: 98%;
   }
 
   .title {
-    font-size: 50px;
-    margin-bottom: 10px;
+    font-size: 45px;
+    margin: 60px 0 10px 0;
   }
 
   img {
@@ -160,7 +160,7 @@ Mobile Screen Flip
   }
 
   h3 {
-    font-size: 25px;
+    font-size: 23px;
   }
 
   h4, h5 {
@@ -176,17 +176,17 @@ Mobile Screen Flip
   }
 
   form {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
   }
 
   input {
-    height: 29px;
+    height: 25px;
     font-size: 20px;
   }
 
   button {
     width: 100px;
-    height: 35px;
+    height: 31px;
     font-size: 20px;
   }
 
