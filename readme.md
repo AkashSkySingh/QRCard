@@ -38,14 +38,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 #### Sample Media CSS
 ``` css
 @media all {
-  html, body {
-    height: 100%;
+  html {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-width: 320px;
+    min-width: 375px;
     background-color: #f6f6e8;
     color: #404040;
   }
@@ -53,6 +52,7 @@ app.use(express.static(path.join(__dirname, 'public')));
   h1, h3, h4 {
     font-family: 'Raleway', sans-serif;
   }
+}
 ```
 
 #### Sample QR Code
