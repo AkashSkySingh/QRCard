@@ -146,7 +146,7 @@ Mobile Screen Flip
 @media (min-device-width: 551px) and (max-device-width: 750px){
 
   html {
-    height: 98%;
+    height: 95%;
   }
 
   .title {
